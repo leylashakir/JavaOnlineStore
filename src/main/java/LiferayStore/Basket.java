@@ -1,8 +1,8 @@
 package LiferayStore;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 /** Create a basket class, which is a list that holds all the items parsed from the file in an ArrayList.
  * The sales and import tax for each item is calculated within the class.
@@ -24,12 +24,7 @@ public final class Basket {
 
     public static boolean hasSalesTax(Item item)
     {
-        for (String word : Arrays.asList("book", "chocolate", "pills")) {
-            if (item.name.contains(word)) {
-                return false;
-            }
-        }
-        return true;
+        return Stream.of("book", "chocolate", "pills").noneMatch(item.name::contains);
     }
 
     public static boolean hasImportTax(Item item)
@@ -42,7 +37,7 @@ public final class Basket {
     }
 
     // Method to round to the nearest 0.05 of a dollar
-    protected static double roundAmount(double amount) {
+    public static double roundAmount(double amount) {
         return Math.round(amount * 20.0) / 20.0;
     }
 
@@ -50,7 +45,7 @@ public final class Basket {
      * Print total taxes paid for all items,
      * Print basket total
      */
-    protected static void printOutput(Basket basket) {
+    public static void printOutput(Basket basket) {
 
         List<Item> items = basket.getItems();
         double basketTotalPrice = 0;
