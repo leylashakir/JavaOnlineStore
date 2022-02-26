@@ -14,6 +14,7 @@ public class App {
         Basket basket = new Basket();
 
         try (
+                // Change files names here to test new input files
                 FileReader fileReader = new FileReader("src/main/resources/Input3.txt");
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
                 Stream<String> lines = bufferedReader.lines()
