@@ -37,10 +37,18 @@ public final class Basket {
         return item.name.contains("imported");
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
 
-    /** Method to calculate import and sales taxes for individual items,
-     * total taxes for all items in the basket,
-     * and total price of the basket with taxes to the nearest 5 cents.
+    // Method to round to the nearest 0.05 of a dollar
+    protected static double roundAmount(double amount) {
+        return Math.round(amount * 20.0) / 20.0;
+    }
+
+    /** Print each item's name and price + applicable taxes (rounded to nearest 5 cents),
+     * Print total taxes paid for all items,
+     * Print basket total
      */
     protected static void printOutput(Basket basket) {
 
@@ -69,14 +77,5 @@ public final class Basket {
 
         System.out.printf("Sales Taxes: %.2f%n", basketTotalTax);
         System.out.printf("Total: %.2f%n", basketTotalPrice);
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    // Method to round to the nearest 0.05 of a dollar
-    protected static double roundAmount(double amount) {
-        return Math.round(amount * 20.0) / 20.0;
     }
 }
